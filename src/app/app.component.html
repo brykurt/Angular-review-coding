@@ -1,0 +1,37 @@
+<h1>{{ gg }}</h1>
+
+<div class="para">
+  <input
+    type="text"
+    [(ngModel)]="serverName"
+    (input)="onUpdateServerName($event)"
+  />
+  <button
+    (click)="onCreateServer()"
+    [disabled]="!allowNewServer"
+    (click)="serverName = ' '"
+  >
+    Add name here
+  </button>
+  <p>Hello {{ gg1 }}, please enter your age below</p>
+  <input type="number" [(ngModel)]="age" />
+  <p>{{ serverStatus }}</p>
+</div>
+
+<div class="ageresult">
+  <div *ngIf="age >= 18">
+    <app-legal-notification></app-legal-notification>
+  </div>
+
+  <div *ngIf="age < 18">
+    <app-minor-notification></app-minor-notification>
+  </div>
+</div>
+
+<button [disabled]="serverName === ' '" (click)="serverName = ' '">
+  Reset
+</button>
+
+<p *ngIf="serverCreated"></p>
+
+<p *ngFor="let server of servers">Server:{{ server }}</p>
